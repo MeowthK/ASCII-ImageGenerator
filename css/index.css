@@ -1,0 +1,23 @@
+body {
+    align-content: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 25px;
+    padding: 0;
+}
+
+#canvasArea {
+    width: 600px;
+    resize: none;
+    overflow: hidden;
+    max-width: none;
+    max-height: fit-content;
+    word-wrap: normal;
+    height: 660px;
+    margin-top: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 10px;
+}
+
+.whSetter {
+    width: 36px;
+}
