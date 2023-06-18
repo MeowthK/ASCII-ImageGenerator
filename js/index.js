@@ -8,9 +8,7 @@ function getDimension() {
     return new Bounds(0, 0, w, h);
 }
 
-function $(id) {
-    return document.getElementById(id);
-}
+const $ = (id) => document.getElementById(id);
 
 function setDimension() {
 
@@ -25,8 +23,8 @@ function setDimension() {
 
     const wMultiplier = 6.05;
     const hMultiplier = 11;
-
-    $("canvasArea").setAttribute("style", "width: " + w * wMultiplier + "px; height: " + h * hMultiplier + "px");
+    
+    $("canvasArea").setAttribute("style", `width: ${w * wMultiplier}px; height: ${h * hMultiplier}px`);
     $("imgCanvas").width = w;
     $("imgCanvas").height = h;
 }
@@ -38,18 +36,15 @@ function getPixelData() {
 
 function convertToASCII(pixelData) {
 
-    let pixels = pixelData.data;
+    const pixels = pixelData.data;
+    const shades = [ '@', '%', '#', '+', '*', ';', ':', '.', '`', ' ' ];
     let pixelShaded = "";
-    const shades = [ '@', '%', '#', '+', '*', ';', ':', '`', ' ' ];
 
     for (let i = 0; i < pixels.length; i += 4) {
 
         let gray = parseInt((pixels[i] + pixels[i + 1] + pixels[i + 2]) / 3);
 
-        pixels[i] = pixels[i + 1] = pixels[i + 2] = gray;
-
         let shadeIndex = parseInt(gray / 255 * (shades.length - 1));
-
         pixelShaded += shades[shadeIndex];
         
         if ((i / 4 + 1) % pixelData.width === 0)
@@ -57,6 +52,12 @@ function convertToASCII(pixelData) {
     }
 
     return pixelShaded;
+}
+
+function copyASCII() {
+    navigator.clipboard.writeText($("canvasArea").innerHTML)
+    .then(alert("Text copied."))
+    .catch((e) => alert(`Error: ${e}`));
 }
 
 function refresh(e) {
