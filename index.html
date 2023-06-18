@@ -17,10 +17,11 @@
                 <label for="heightSetter">Height:</label>
                 <input type="text" class="whSetter" id="heightSetter" value="60" />
                 <button id="dimensionSetter" onclick="setDimension()">Set</button>
-                <input type="file" placeholder="Select a file" id="imageSetter" onchange="generateImage(this)" />
+                <input type="file" placeholder="Select a file" id="imageSetter" onclick="refresh(this)" oninput="generateImage(this)" />
                 <br>
             </div>
             <textarea id="canvasArea" readonly="true" placeholder="Canvas Area"></textarea>
+            <canvas id="imgCanvas"></canvas>
         </div>
     </body>
     <script src="js/index.js"></script>
